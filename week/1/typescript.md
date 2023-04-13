@@ -1,73 +1,123 @@
----
-description: Node Package Manager
----
+# TypeScript
 
-# NPM
+## Interface vs Type
 
-`NPM(Node Package Manager)` 는 javascript 패키지 저장소이다. 모듈(프레임워크나 라이브러리)은 JS 패키지를 모아 놓은 DB인 npm registry에서 받으며 npm 명령어를 쓰기위해서 필요한 것도 npm을 통해 받는다.
+### type
 
-* package
+* 프로퍼티 추가 안됨
 
-package는 `NPM registry` 에 등록가능한 대상이고 node 모듈이거나 node 모듈을 포함한다. `package.json`이 꼭 있어야 한다.
+확장
 
-* module
+```javascript
+type Animal = {
+  name: string
+}
 
-`/node_modules` 안에 담기고 Node `require()`로 호출 가능한 파일/디렉토리이다. `package.json`은 선택 사항이다.
+type Bear = Animal & {
+  honey: Boolean
+}
 
-module ⊂ package
+const bear = getBear();
+bear.name;
+bear.honey;        
+```
 
-## package.json
+### interface
 
-`package.json`은 package의 metadata이고, `npm init`을 했을 때 생성되는 파일이다. 안드로이드에서의 매니페스트 파일과 비슷한 위치이다.
+확장
 
-`dependencies` 와 `devDependencies` 가 있는데, dev의 경우엔 개발할 때만 쓰이는 종속성 모듈을 넣는다. 개발은 typescript로 하지만 배포는 typescript로 운영시에 일일이 변환해서 실행하는게 아니라 변환한 것을 배포하는 것이므로 필요없다.
+```javascript
+interface Animal {
+  name: string
+}
 
-개발용 설치시에는 `--save-dev` / `-D` 옵션을 넣어준다.
+interface Bear extends Animal {
+  honey: boolean
+}
 
-* version
+const bear = getBear()
+bear.name
+bear.honey        
+```
 
-0.0.0 (major / minor / patch) 로 나누어서 설정 한다. semantic versioning 참고.
+필드 추가(가능)
 
-* scripts
+```javascript
+interface Window {
+  title: string
+}
 
-실행 할 스크립트를 미리 설정해 놓는다. `npm <스크립트 이름>` 으로 실행 가능하다
+interface Window {
+  ts: TypeScriptAPI
+}
 
-## package-lock.json
+const src = 'const a = "Hello World"';
+window.ts.transpileModule(src, {});
+```
 
-`/node_modules` 나 `package.json`을 건들면 자동으로 생성되는 파일이다. `package-lock.json`으로 설치하면 파일 생성시와 똑같은 종속성 트리 정보의 `/node_modules`를 받을 수 있다.
+## 타입 추론
 
-모듈 별로 버전 업데이트가 된다 해도 해당 패키지 개발 당시의 버전으로 잠금(lock)이 되기 때문에 종속성이 충돌하지 않는다.
+javascript 특정 값을 넣을 때 그 값의 타입을 변수의 타입으로 여기고 사용하는 것.
 
-만약 협업할 때 이 파일이 없으면 심히 곤란해질 것 같다. 그리고 프론트엔드 쪽이 정말 빠르게 바뀌는 편인데 옛날 프로젝트를 돌린다 치면 충돌없이 돌리려면 필수로 보인다.
+* "hello" -> string
+* 3 -> number
 
-## node\_modules
+## Union Type vs Intersection Type
 
-npm을 통해 설치된 모듈은 node\_modules란 폴더에 담기게 되는데, 모듈 용량이 꽤 되기 때문에 git에 올릴 때는 .gitignore로 해당 경로를 제외 시켜줘야 한다. 이전에 git으로 올릴 때 신경 안쓰고 올렸다가 용량제한에 걸린적이 있었으니 더더욱 주의해야 한다. 처음 프로젝트 설정시 미리미리 .gitignore을 설정하는 것이 좋은 습관이다.
+### Union Type
 
-* .gitignore 만들때 유용한 사이트
-  * [.gitignore 쉽게 만들어주는 사이트](https://www.toptal.com/developers/gitignore)
-  * [github gitignore 양식](https://github.com/github/gitignore)
+`type var = 'a' | 'b' | 'c';`
 
-그리고 `/node_modules`는 해당 프로젝트에만(local install) 설치한 모듈을 담기 때문에 global install한 패키지는 다른 곳에 담긴다. 전역 설치는 `-g` 옵션으로 가능하고 `/usr/local`/Node 설치 폴더에 담긴다.
+타입의 입력 값을 지정한 것만 받아들인다. any를 추가해서 지정한 것 이외도 받아들일 수도 있다.
 
-## npx
+취약점 진단 항목 중에 open redirection 이 있어서 위험한 url로 지정되는 문제가 있는데, 조치 방법 중에 switch case, if else 같이 지정한 url만 받아들이는 방법이 있다. 뒷단에서도 url 검사를 하는데, 앞단에서도 union을 활용해서 더 안전하게 어플리케이션을 구성할 수 있을 것이다.
 
-설치안한 npm package를 사용가능한 커맨드이다. 물론 설치한 것도 가능하다. 설치한 것을 쓸 때는 `/node_modules/.bin` 에 있는 것을 실행한다.
+```javascript
+function start(
+  arg: string | string[] | (() => string) | { s: string }
+): string {
+  // this is super common in JavaScript
+  if (typeof arg === "string") {
+    return commonCase(arg);
+  } else if (Array.isArray(arg)) {
+    return arg.map(commonCase).join(",");
+  } else if (typeof arg === "function") {
+    return commonCase(arg());
+  } else {
+    return commonCase(arg.s);
+  }
+ 
+  function commonCase(s: string): string {
+    // finally, just convert a string to another string
+    return s;
+  }
+}
+```
 
-```bash
-npx -- <pkg>[@<version>] [args...]
-npx --package=<pkg>[@<version>] -- <cmd> [args...]
-npx -c '<cmd> [args...]'
-npx --package=foo -c '<cmd> [args...]'
+### intersections
+
+교집합은 두개 다 만족하는 것인데, `&` 를 쓰면 아래 a, b 둘을 모두 포함하는 Combined type이 생성된다.
+
+```javascript
+type Combined = { a: number } & { b: string };
+type Conflicting = { a: number } & { a: string };
+```
+
+## Optional Parameter
+
+함수의 매개변수를 0 개 혹은 1개로 유동적으로 정하고 싶으면 `?:` 엘비스 연산자를 이용해서 받는다.
+
+```javascript
+function f(x?: number) {
+  // ...
+}
+f(); // OK
+f(10); // OK
 ```
 
 ## reference
 
-* [about npm](https://docs.npmjs.com/about-npm)
-* [package와 모듈](https://docs.npmjs.com/about-packages-and-modules)
-* [package.json 상세](https://docs.npmjs.com/cli/v9/configuring-npm/package-json)
-* [semantic versioning](https://docs.npmjs.com/about-semantic-versioning)
-* [package-lock.json](https://docs.npmjs.com/cli/v9/configuring-npm/package-lock-json)
-* [node\_modules 관련](https://docs.npmjs.com/cli/v9/configuring-npm/folders)
-* [npx](https://docs.npmjs.com/cli/v9/commands/npx)
-* [MD040 지원 언어](https://www.rubycoloredglasses.com/2013/04/languages-supported-by-github-flavored-markdown/)
+* [type vs interface](https://www.typescriptlang.org/ko/docs/handbook/typescript-in-5-minutes.html#%ED%83%80%EC%9E%85-%EC%B6%94%EB%A1%A0-types-by-inference)
+* [타입 추론](https://www.typescriptlang.org/ko/docs/handbook/typescript-in-5-minutes.html#%ED%83%80%EC%9E%85-%EC%B6%94%EB%A1%A0-types-by-inference)
+* [union](https://www.typescriptlang.org/docs/handbook/typescript-in-5-minutes-func.html#unions)
+* [Optional parameters](https://www.typescriptlang.org/docs/handbook/2/functions.html#optional-parameters)
