@@ -70,7 +70,7 @@ javascript 특정 값을 넣을 때 그 값의 타입을 변수의 타입으로 
 
 타입의 입력 값을 지정한 것만 받아들인다. any를 추가해서 지정한 것 이외도 받아들일 수도 있다.
 
-취약점 진단 항목 중에 open redirection 이 있어서 위험한 url로 지정되는 문제가 있는데, 조치 방법 중에 switch case, if else 같이 지정한 url만 받아들이는 방법이 있다. 뒷단에서도 url 검사를 하는데, 앞단에서도 union을 활용해서 더 안전하게 어플리케이션을 구성할 수 있을 것이다.
+취약점 진단 항목 중에 open redirectiond이 있다. 해당 취약점은 url을 매개변수로 받을 경우 위험한 url로 지정될 수도 있는 문제가 있는데, 조치 방법 중에 switch case, if else 같이 지정한 url만 받아들이는 방법이 있다. 뒷단에서도 url 검사를 하는데, 만약에 앞단에서 typescript를 쓸 경우에 union을 활용해서 정해진 url만 화이트리스트로 받는다면 더 안전하게 어플리케이션을 구성할 수 있을 것 같다.
 
 ```javascript
 function start(
@@ -105,7 +105,7 @@ type Conflicting = { a: number } & { a: string };
 
 ## Optional Parameter
 
-함수의 매개변수를 0 개 혹은 1개로 유동적으로 정하고 싶으면 `?:` 엘비스 연산자를 이용해서 받는다.
+함수의 매개변수를 0 개 혹은 1개 두개 다 받고 싶으면 `?:` 엘비스 연산자를 이용해서 받는다.
 
 ```javascript
 function f(x?: number) {
