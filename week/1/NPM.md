@@ -40,15 +40,15 @@ module ⊂ package
 
 만약 협업할 때 이 파일이 없으면 심히 곤란해질 것 같다. 그리고 프론트엔드 쪽이 정말 빠르게 바뀌는 편인데 옛날 프로젝트를 돌린다 치면 충돌없이 돌리려면 필수로 보인다.
 
-## node_modules
+## node\_modules
 
-npm을 통해 설치된 모듈은 node_modules란 폴더에 담기게 되는데, 모듈 용량이 꽤 되기 때문에 git에 올릴 때는 .gitignore로 해당 경로를 제외 시켜줘야 한다. 이전에 git으로 올릴 때 신경 안쓰고 올렸다가 용량제한에 걸린적이 있었으니 더더욱 주의해야 한다. 처음 프로젝트 설정시 미리미리 .gitignore을 설정하는 것이 좋은 습관이다.
+npm을 통해 설치된 모듈은 node\_modules란 폴더에 담기게 되는데, 모듈 용량이 꽤 되기 때문에 git에 올릴 때는 .gitignore로 해당 경로를 제외 시켜줘야 한다. 이전에 git으로 올릴 때 신경 안쓰고 올렸다가 용량제한에 걸린적이 있었으니 더더욱 주의해야 한다. 처음 프로젝트 설정시 미리미리 .gitignore을 설정하는 것이 좋은 습관이다.
 
 * .gitignore 만들때 유용한 사이트
   * [.gitignore 쉽게 만들어주는 사이트](https://www.toptal.com/developers/gitignore)
   * [github gitignore 양식](https://github.com/github/gitignore)
 
-그리고 `/node_modules`는 해당 프로젝트에만(local install) 설치한 모듈을 담기 때문에 global install한 패키지는 다른 곳에 담긴다. 전역 설치는  `-g` 옵션으로 가능하고 `/usr/local`/Node 설치 폴더에 담긴다.
+그리고 `/node_modules`는 해당 프로젝트에만(local install) 설치한 모듈을 담기 때문에 global install한 패키지는 다른 곳에 담긴다. 전역 설치는 `-g` 옵션으로 가능하고 `/usr/local`/Node 설치 폴더에 담긴다.
 
 ## npx
 
@@ -68,6 +68,6 @@ npx --package=foo -c '<cmd> [args...]'
 * [package.json 상세](https://docs.npmjs.com/cli/v9/configuring-npm/package-json)
 * [semantic versioning](https://docs.npmjs.com/about-semantic-versioning)
 * [package-lock.json](https://docs.npmjs.com/cli/v9/configuring-npm/package-lock-json)
-* [node_modules 관련](https://docs.npmjs.com/cli/v9/configuring-npm/folders)
+* [node\_modules 관련](https://docs.npmjs.com/cli/v9/configuring-npm/folders)
 * [npx](https://docs.npmjs.com/cli/v9/commands/npx)
 * [MD040 지원 언어](https://www.rubycoloredglasses.com/2013/04/languages-supported-by-github-flavored-markdown/)
