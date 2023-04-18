@@ -83,9 +83,9 @@ root.render(
 
 #### DOM이란?
 
-Document Object Model. 문서 객체 모델로 HTML/XML 문서를 programming하는데 필요한 interface 이다. Document에는 page content가 저장되어 있고 Javascript로 접근해서 조작이 가능하다. Document는 node, object 들의 tree 형태로 표현 되어있다. API(web/xml)는 뭉뚱그려 말하자면 DOM과 script 언어의 조합이다.
+Document Object Model. 문서 객체 모델로 HTML/XML 문서에 대한 programming  interface 이다. Document에는 page content가 저장되어 있고 Javascript로 접근해서 조작이 가능하다. Document는 Node들이 모인 tree 형태로 표현 되어있기에 DOM Tree 라고 한다.. API(web/xml)는 뭉뚱그려 말하자면 DOM과 script 언어의 조합이다.
 
-dom interface에서 주요 object는 브라우저를 뜻하는 `window` 와 root document를 가리키는 `Document`가 있다.
+dom interface에서 주요 object는 브라우저를 뜻하는 `window` 와 root document를 가리키는 `Document`가 있다. `Node` interface 에서 상속받은 `Node` 와 `Element` 가 있고, `Element` interface 또한 있다. 
 
 #### DOM과 Virtual DOM의 차이
 ### Reconciliation(재조정) 과정은 무엇인가?
@@ -136,3 +136,4 @@ Reconciliation (재조정) 뭔가 화면 업데이트 관련해서 재조정을 
 5. [element-rendering](https://ko.reactjs.org/docs/rendering-elements.html)
 6. [Component](https://ko.reactjs.org/docs/components-and-props.html)
 7. [DOM](https://developer.mozilla.org/ko/docs/Web/API/Document_Object_Model/Introduction)
+8. [DOM(2)](https://developer.mozilla.org/ko/docs/Glossary/DOM)
