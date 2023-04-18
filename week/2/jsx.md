@@ -52,6 +52,32 @@ React.createElement(
 
 ### StrictMode
 
+적용 범위 컴포넌트 내의 요소에 불완전 rendering,  effect 정리 누락 , deprecated API 사용등의 버그를 검사해서 경고해주는 컴포넌트이다. 검사를 하기위해 StrictMode는 추가시간을 들여서 re-rendering 을 하거나 effect를 다시 실행하거나 한다.
+
+고로, 초기 개발시에 버그 잡는 용으로만 임시로 쓰기에 좋다. 왜냐하면 해당 component는 버그를 탐지해내기 위해 일부러 추가시간을 들여서 re-rendering을 하고, effect를 다시 수행하기 때문에 배포시에는 오히려 방해가 되기 때문이다. 따라서 배포 이전까지 문제점을 해결하고 component를 제거하는 것이 맞다.
+
+적용하는이게 뭔가. 왜 쓰이는가? 쓰면 이점이 뭔가?
+뭔가 엄격한 룰을 적용해서 제한을 거는 모드인것같다. 그리고 제약에 대한 tradeoff로 얻는 것이 있을 것이다.
+
+#### StrictMode의 사용법
+
+적용시에는 Component
+import 후 모드적용할 범위를 태그 여닫는 범위로 정한다.
+
+```javascript
+import { StrictMode } from 'react';
+import { createRoot } from 'react-dom/client';
+
+const root = createRoot(document.getElementById('root'));
+root.render(
+  <StrictMode>
+    <App />
+  </StrictMode>
+);
+```
+
+
+
 그리고
 규칙
 속성
