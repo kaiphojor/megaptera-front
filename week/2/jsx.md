@@ -2,17 +2,57 @@
 
 ## JSX란?
 
-JavaScript 파일에서 쓰이는 ECMAscript 의 XML류 문법 확장. 그러나 ECMAscript 사양에 포함하진 않는다. 전처리기(transpiler)에 의해 정식 JS 코드로 변환됨. attribute 붙은 tree 구조를 xml 비슷한 식으로 간결하고 친숙하게 정의 하는 것이 원래 목적이다.
+JavaScript 파일에서 쓰이는 XML류의 문법 확장이고 전처리기 처리 시 정식 JS 코드로 변환된다. attribute 붙은 tree 구조를 xml 비슷한 식으로 간결하고 친숙하게 정의 하는 것이 원래 목적이다.
 
-react에서의 쓰임
+### jsx가 왜 만들어졌는가?
+
+웹 구성 시에 html, js 파일이 분리되어 있는경우가 많았었다. 하지만 상호작용성이 더 커지면서 로직이 UI 컨텐츠를 결정하는 경우가 많아졌다. 마크업과 js를 함께 관리하면 한곳에 모여있어 유지보수, 수정시 편하다. react에선 마크업과 js코드가 합쳐진 component 단위가 있다. 해당 마크업을 js 파일에서 표현하기 위해 JSX가 고안되게 되었다.
+
+### react에서의 쓰임
+
 React에서는 JSX를 통해 element를 트리 구조로 보기 쉽게 표현할 수 있다. 이는 javascript 코드 내에서 UI 작업을 편리하게 할 수 있다. 그리고 JSX 표현식 형태는 마크업과 JS 코드의 혼종이지만 컴파일 이후에는 엄연한 JS 함수, 객체로 변환된다.
 
-jsx가 왜 필요하게 되었는가?
-웹 구성 시에 html, js 파일이 분리되어 있는경우가 많았었다. 하지만 상호작용성이 더 커지면서 로직이 UI 컨텐츠를 결정하는 경우가 많아졌다. 그렇게 마크업과 js코드가 합쳐진 component가 생겨나게 되었고 마크업을 js 파일에서 표현하기 위해 JSX가 고안되게 되었다.
+### React의 element란?
 
-JSX는 코드 삽입 면에서는 JSP하고 반대이다. 갑자기 java이야기이지만 jsp가 html 내 java코드를 삽입할 수 있게 만든 것이라면 JSX는 js 코드내 html을 포함한 xml 코드를 삽입하기 위한 문법의 확장이다. 하지만 변환이 모두 코드로 된다는 점은 동일하다. JSP는 servlet Java/class 파일로 바뀌고, JSX 도 결국 js 코드에 1대1로 js 함수화, 객체화 변환되어 js 파일에 녹아들기 때문이다. 그리고 이 둘이 UI를 각각 java/js 로직으로 그려낸다는 점에서 비슷하다는 쪽에 무게를 더 두고 싶다.
+React application에서 화면을 그려주는 최소 구성 단위. 일반 객체로 받아들여진다. ReactDOM에서 root DOM 노드를 등록한뒤, root DOMnode 밑에 DOM element를 등록한다. ReactDOM은 등록된 모든 element들을 관리하며 그것들의 정보를 DOM에 업데이트한다.
 
+### jsx 와 jsp
 
+JSX는 코드 삽입 면에서는 JSP하고 반대이다. 갑자기 java이야기이지만 jsp가 html 내 java코드를 삽입할 수 있게 만든 것이라면 JSX는 js 코드내 마크업을 삽입하기 위한 문법의 확장이다. 하지만 변환이 모두 코드로 된다는 점은 동일하다. JSP는 servlet Java/class 파일로 바뀌고, JSX 도 결국 js 코드에 1대1로 js 함수화, 객체화 변환되어 js 파일에 녹아들기 때문이다. 그리고 이 둘이 UI를 각각 java/js 로직으로 그려낸다는 점에서 비슷한 것 같다.
+
+### jsx없이 마크업 생성
+
+JSX 코드는 `<p>Hello, world!</p>` 라고 할 때 해당 코드는 js 코드로 `React.createElement("p", null, "Hello, world!");` 로 변환 된다. 태그 하나에 `React.createElement` 하나가 대응된다.
+
+js 코드를 직접 쓰면 JSX 코드는 필요없다. 하지만, 그렇게 해서는 JSX 코드로 보면 간단히 파악할 수 있는 트리 구조를 일일이 떠올려가며 작업해야한다. 또한 위 예시는 간편해서 그렇지 조금만 복잡해져도 귀찮아진다.
+
+자세한 사항은 reference 참고
+
+### syntactic sugar
+
+syntactic sugar는 코드를 더 이해하고 읽고 쓰기 편하게 만들어주는 구문(문법)이다. 똑같은 기능이어도 간략화되고, 이해가 쉬워서 유지보수하기에 도움이 된다.
+
+```jsx
+<div className="test">
+    <p>Hello, world!</p>
+    <Button type="submit">Send</Button>
+</div>
+```
+
+위 JSX 코드를 변환하면 아래처럼 나온다. JSX쪽이 한눈에 파악이 되고 아래는 `React.createElement` 안쪽에 중첩이 되어 보기 불편하다. tab으로 그나마 보기 편하게 만들었지만 보기 쉽게 만들기 위해 저런 수고를 다해야 한다는 것은 원래 보기 어렵다는 방증이다.
+
+```javascript
+React.createElement(
+    "div",
+    { className: "test" },
+    React.createElement("p", null, "Hello, world!"),
+    React.createElement(Button, { type: "submit" }, "Send")
+);
+```
+
+### StrictMode
+
+그리고
 규칙
 속성
 문자열 리터럴 - 따옴표
@@ -52,3 +92,6 @@ Reconciliation (재조정) 뭔가 화면 업데이트 관련해서 재조정을 
 
 1. [jsx 공식문서](https://facebook.github.io/jsx/)
 2. [react-jsx](https://react.dev/learn/writing-markup-with-jsx#jsx-putting-markup-into-javascript)
+3. [strictMode](https://react.dev/reference/react/StrictMode#strictmode)
+4. [jsx 없이 element 만들기](https://react.dev/reference/react/createElement#creating-an-element-without-jsx)
+5. [element-rendering](https://ko.reactjs.org/docs/rendering-elements.html)
