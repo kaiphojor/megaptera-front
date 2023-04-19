@@ -14,3 +14,5 @@
   * [React](week/1/React.md)
   * [Testing Library](week/1/testing_library.md)
   * [Parcel & ESLint](week/1/parcel_and_eslint.md)
+* [week 2 - JSX](week/2/README.md)
+  * [JSX](week/2/jsx.md)
