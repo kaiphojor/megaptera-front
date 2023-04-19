@@ -8,6 +8,8 @@ JavaScript 파일에서 쓰이는 XML류의 문법 확장이고 전처리기 처
 
 웹 구성 시에 html, js 파일이 분리되어 있는경우가 많았었다. 하지만 상호작용성이 더 커지면서 로직이 UI 컨텐츠를 결정하는 경우가 많아졌다. 마크업과 js를 함께 관리하면 한곳에 모여있어 유지보수, 수정시 편하다. react에선 마크업과 js코드가 합쳐진 component 단위가 있다. 해당 마크업을 js 파일에서 표현하기 위해 JSX가 고안되게 되었다.
 
+JSX는 facebook에서 2013년에 react library에서의 사용을 위해 만들었다. 하지만 react 개발의 부산물이라고 해서 꼭 jsx가 react 용으로만 사용될 수 있는건 아니다. 정의에 있다시피 js파일에서 쓰이는 xml류 문법 확장이므로 스펙 상 react에 한정되지는 않는다.
+
 ### react에서의 쓰임
 
 React에서는 JSX를 통해 element를 트리 구조로 보기 쉽게 표현할 수 있다. 이는 javascript 코드 내에서 UI 작업을 편리하게 할 수 있다. 그리고 JSX 표현식 형태는 마크업과 JS 코드의 혼종이지만 컴파일 이후에는 엄연한 JS 함수, 객체로 변환된다.
@@ -154,10 +156,6 @@ DOM tree를 일일이 조작하는 것보다 react element를 변경하는 작�
 * 패러다임 : 이론/인식 체계
 * 휴리스틱 알고리즘 - 최적해를 찾지 못하거나 시간이 너무 걸릴 때 실용적인 가정을 통해 근사해를 구하는 접근법. 보통 경험칙, 시행착오, 상식적인 전략, 직관을 사용하여 문제를 해결한다. 이 접근법의 특징은 정확성을 희생해서 문제 해결 속도를 높이는 편이다.
 * escape - URI로 전달 위한 문자열 인코딩 - [링크](https://opentutorials.org/course/50/191)
-
-facebook에서 2013년에 react library에서의 사용을 위해 만들었다.
-추가 - ECMAscript란?
-
 * [관심사의 분리](https://en.wikipedia.org/wiki/Separation_of_concerns)
 
 ## reference
