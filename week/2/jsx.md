@@ -54,7 +54,7 @@ React.createElement(
 
 재사용 가능한 UI 조각이고, props 속성 데이터를 인자로 받아서 React element를 반환한다. `React.component` 혹은 function을 통해 정의한다. 요즘은 function component 정의를 추천한다.
 
-여기까지만 보면 React application을 구성하는 요소인 element와 뭐가 다른지 구분이 안간다. 그저 component가 element의 상위에 있다는 차이일뿐. 하지만 Component는 다른 component를 조합해서 생성 할 수 있다는 점이 있다. element는 개별적으로 존재하고 element를 여러개 합쳐서 element를 만드는 기능이없다. 이걸 component의 합성이라 한다. 이와 반대로 큰 component를 여러개의 작은 component로 분리하는 작업을 component 추출이라 한다. 
+여기까지만 보면 React application을 구성하는 요소인 element와 뭐가 다른지 구분이 안간다. 그저 component가 element의 상위에 있다는 차이일뿐. 하지만 Component는 다른 component를 조합해서 생성 할 수 있다는 점이 있다. 이걸 component의 합성이라 한다. element는 여러 element를 합성해서 element를 만드는 기능이없다. 이와 반대로 큰 component를 여러개의 작은 component로 분리하는 작업을 component 추출이라 한다.
 
 ### StrictMode
 
@@ -79,18 +79,32 @@ root.render(
 );
 ```
 
+### DOM이란?
+
+Document Object Model. 문서 객체 모델로 HTML/XML 문서에 대한 programming  interface 이다. Document에는 page content가 저장되어 있고 Javascript로 접근해서 조작이 가능하다. Document는 Node들이 모인 tree 형태로 표현 되어있기에 DOM Tree 라고 한다. API(web/xml)는 뭉뚱그려 말하자면 DOM과 script 언어의 조합이다.
+
+dom interface에서 주요 object는 브라우저를 뜻하는 `window` 와 root document를 가리키는 `Document`가 있다. `Node` interface 에서 상속받은 `Node` 와 `Element` 가 있고, `Element` interface 또한 있다.
+
 ### VDOM(Virtual DOM)이란?
 
-#### DOM이란?
+메모리 상에 존재하는 가상의 React Element Tree. 가상의 element Tree의 업데이트 시 ReactDOM library를 통해 실제 UI인 DOM Tree 에 반영 하는 표현 방식. element Tree의 변경된 부분만 찾아서 바꾸는 과정을 재조정(Reconciliation)이라고 함.
 
-Document Object Model. 문서 객체 모델로 HTML/XML 문서에 대한 programming  interface 이다. Document에는 page content가 저장되어 있고 Javascript로 접근해서 조작이 가능하다. Document는 Node들이 모인 tree 형태로 표현 되어있기에 DOM Tree 라고 한다.. API(web/xml)는 뭉뚱그려 말하자면 DOM과 script 언어의 조합이다.
-
-dom interface에서 주요 object는 브라우저를 뜻하는 `window` 와 root document를 가리키는 `Document`가 있다. `Node` interface 에서 상속받은 `Node` 와 `Element` 가 있고, `Element` interface 또한 있다. 
-
-#### DOM과 Virtual DOM의 차이
 ### Reconciliation(재조정) 과정은 무엇인가?
 
+휴리스틱은 계속 발전중이지만 현재는 element 이름이 같으면 그대로 사용하고 아니면 재생성한다. element가 같고 attribute가 다를 경우에는 해당 데이터만 교체한다. 같은 이름의 element가 여러개 있을 경우 마지막에 append 시 추가하는 element만 업데이트 한다. 첫번째 자리에 끼워넣을 경우에는 나머지가 같더라도 전부 업데이트 한다.
 
+#### DOM과 Virtual DOM의 차이
+
+UI 업데이트 시 DOM을 직접 변경하는 것과는 달리 Virtual DOM에서는 메모리상의 element Tree를 변경사항을 갱신하고, 그 후에 DOM에 반영 한다.
+
+또한 VDOM은 이전 element tree 와의 비교(diffing)를 해서 최소한의 변경사항만 렌더링 하기 때문에 좀 더 효율적인 DOM 조작/렌더링이 가능하다. 하지만 적당히 빠르지 중요한 것은 유지보수성의 향상이다.
+
+DOM tree를 일일이 조작하는 것보다 react element를 변경하는 작업은 tree 구조, 변경사항을 눈으로 바로 확인할 수 있어 직관적이고 편하다. 이러한 편의성은 많은 양의 작업을 한다고 가정할 때 유지보수성의 증가로 이어진다.
+
+
+
+
+변경 사항만 
 그리고
 규칙
 속성
@@ -131,9 +145,11 @@ Reconciliation (재조정) 뭔가 화면 업데이트 관련해서 재조정을 
 
 1. [jsx 공식문서](https://facebook.github.io/jsx/)
 2. [react-jsx](https://react.dev/learn/writing-markup-with-jsx#jsx-putting-markup-into-javascript)
-3. [strictMode](https://react.dev/reference/react/StrictMode#strictmode)
-4. [jsx 없이 element 만들기](https://react.dev/reference/react/createElement#creating-an-element-without-jsx)
-5. [element-rendering](https://ko.reactjs.org/docs/rendering-elements.html)
-6. [Component](https://ko.reactjs.org/docs/components-and-props.html)
-7. [DOM](https://developer.mozilla.org/ko/docs/Web/API/Document_Object_Model/Introduction)
-8. [DOM(2)](https://developer.mozilla.org/ko/docs/Glossary/DOM)
+3. [jsx-depth](https://ko.reactjs.org/docs/jsx-in-depth.html)
+4. [strictMode](https://react.dev/reference/react/StrictMode#strictmode)
+5. [jsx 없이 element 만들기](https://react.dev/reference/react/createElement#creating-an-element-without-jsx)
+6. [element-rendering](https://ko.reactjs.org/docs/rendering-elements.html)
+7. [Component](https://ko.reactjs.org/docs/components-and-props.html)
+8. [DOM](https://developer.mozilla.org/ko/docs/Web/API/Document_Object_Model/Introduction)
+9. [DOM(2)](https://developer.mozilla.org/ko/docs/Glossary/DOM)
+10. [Virtual DOM](https://ko.reactjs.org/docs/faq-internals.html#what-is-the-virtual-dom)
