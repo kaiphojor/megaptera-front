@@ -87,7 +87,8 @@ dom interface에서 주요 object는 브라우저를 뜻하는 `window` 와 root
 
 ## VDOM(Virtual DOM)이란?
 
-메모리 상에 존재하는 가상의 React Element Tree의 업데이트 시 ReactDOM library를 통해 변경사항을 실제 UI인 DOM Tree 에 동기화하는 표현 방식. element Tree의 변경된 부분만 찾아서 바꾸는 과정을 재조정(Reconciliation)이라고 함.
+가상의 UI React Element Tree의 업데이트 시 ReactDOM library를 통해 변경사항을 실제 UI인 DOM Tree 에 동기화하는 표현 방식.
+element Tree의 변경된 부분만 찾아서 바꾸는 과정을 재조정(Reconciliation)이라고 함.
 
 ### Reconciliation(재조정) 과정은 무엇인가?
 
@@ -152,12 +153,12 @@ DOM tree를 일일이 조작하는 것보다 react element를 변경하는 작�
 
 * 패러다임 : 이론/인식 체계
 * 휴리스틱 알고리즘 - 최적해를 찾지 못하거나 시간이 너무 걸릴 때 실용적인 가정을 통해 근사해를 구하는 접근법. 보통 경험칙, 시행착오, 상식적인 전략, 직관을 사용하여 문제를 해결한다. 이 접근법의 특징은 정확성을 희생해서 문제 해결 속도를 높이는 편이다.
-* escape - URI로 전달 위한 문자열 인코딩 - https://opentutorials.org/course/50/191
+* escape - URI로 전달 위한 문자열 인코딩 - [링크](https://opentutorials.org/course/50/191)
 
 facebook에서 2013년에 react library에서의 사용을 위해 만들었다.
+추가 - ECMAscript란?
 
-추가 - ECMAscript란? 관심사의 분리
-https://en.wikipedia.org/wiki/Separation_of_concerns
+* [관심사의 분리](https://en.wikipedia.org/wiki/Separation_of_concerns)
 
 ## reference
 
