@@ -50,19 +50,19 @@ React.createElement(
 );
 ```
 
-### Component란?
+## Component란?
 
 재사용 가능한 UI 조각이고, props 속성 데이터를 인자로 받아서 React element를 반환한다. `React.component` 혹은 function을 통해 정의한다. 요즘은 function component 정의를 추천한다.
 
 여기까지만 보면 React application을 구성하는 요소인 element와 뭐가 다른지 구분이 안간다. 그저 component가 element의 상위에 있다는 차이일뿐. 하지만 Component는 다른 component를 조합해서 생성 할 수 있다는 점이 있다. 이걸 component의 합성이라 한다. element는 여러 element를 합성해서 element를 만드는 기능이없다. 이와 반대로 큰 component를 여러개의 작은 component로 분리하는 작업을 component 추출이라 한다.
 
-### StrictMode
+## StrictMode
 
 적용 범위 컴포넌트 내의 요소에 불완전 rendering,  effect 정리 누락 , deprecated API 사용등의 버그를 검사해서 경고해주는 내장 컴포넌트이다. 검사를 하기위해 StrictMode는 추가시간을 들여서 re-rendering 을 하거나 effect를 다시 실행하거나 한다.
 
 고로, 초기 개발시에 버그 잡는 용으로만 임시로 쓰기에 좋다. 왜냐하면 해당 component는 버그를 탐지해내기 위해 일부러 추가시간을 들여서 re-rendering을 하고, effect를 다시 수행하기 때문에 배포시에는 오히려 방해가 되기 때문이다. 따라서 배포 이전까지 문제점을 해결하고 component를 제거하는 것이 맞다.
 
-#### StrictMode의 사용법
+### StrictMode의 사용법
 
 적용시에는 Component
 import 후 모드적용할 범위를 태그 여닫는 범위로 정한다.
@@ -79,21 +79,27 @@ root.render(
 );
 ```
 
-### DOM이란?
+## DOM이란?
 
 Document Object Model. 문서 객체 모델로 HTML/XML 문서에 대한 programming  interface 이다. Document에는 page content가 저장되어 있고 Javascript로 접근해서 조작이 가능하다. Document는 Node들이 모인 tree 형태로 표현 되어있기에 DOM Tree 라고 한다. API(web/xml)는 뭉뚱그려 말하자면 DOM과 script 언어의 조합이다.
 
 dom interface에서 주요 object는 브라우저를 뜻하는 `window` 와 root document를 가리키는 `Document`가 있다. `Node` interface 에서 상속받은 `Node` 와 `Element` 가 있고, `Element` interface 또한 있다.
 
-### VDOM(Virtual DOM)이란?
+## VDOM(Virtual DOM)이란?
 
 메모리 상에 존재하는 가상의 React Element Tree. 가상의 element Tree의 업데이트 시 ReactDOM library를 통해 실제 UI인 DOM Tree 에 반영 하는 표현 방식. element Tree의 변경된 부분만 찾아서 바꾸는 과정을 재조정(Reconciliation)이라고 함.
 
 ### Reconciliation(재조정) 과정은 무엇인가?
 
-휴리스틱은 계속 발전중이지만 현재는 element 이름이 같으면 그대로 사용하고 아니면 재생성한다. element가 같고 attribute가 다를 경우에는 해당 데이터만 교체한다. 같은 이름의 element가 여러개 있을 경우 마지막에 append 시 추가하는 element만 업데이트 한다. 첫번째 자리에 끼워넣을 경우에는 나머지가 같더라도 전부 업데이트 한다.
+새로운 element Tree 생성을 할때 두 가정을 기반으로 O(n) 복잡도의 휴리스틱 알고리즘을 적용해서 더욱 빠르게 렌더링을 한다.
 
-#### DOM과 Virtual DOM의 차이
+1. type 이 다른 element는 다른 tree를 생성
+2. key prop을 통해 변경하지 말아야 하는 자식 엘리먼트를 표시할 수 있다.
+
+추가로 같은 타입의 element에 대해서도 속성이 다르면 같은 부분은 놔두고 다른 부분만 갱신한다.
+element tree는 자식도 tree이기에 root에서부터 재귀적으로 갱신처리를 한다. 그 경우 list에 key attribute를 지원해서 변경 없는 자식에 대한 표식을 남긴다. 만약 key가 없을경우 리스트를 순회할 때 끝에 추가되는 경우엔 트리의 변경은 순조롭다. 하지만 앞에 element를 끼워 넣는 경우엔 diffing이 꼬여서 변경사항이 아닌것도 갱신 해버리게 된다. 그렇기 때문에 key를 넣어서 비 갱신 자식 element를 명확하게 하는 것이다.
+
+### DOM과 Virtual DOM의 차이
 
 UI 업데이트 시 DOM을 직접 변경하는 것과는 달리 Virtual DOM에서는 메모리상의 element Tree를 변경사항을 갱신하고, 그 후에 DOM에 반영 한다.
 
@@ -101,15 +107,11 @@ UI 업데이트 시 DOM을 직접 변경하는 것과는 달리 Virtual DOM에�
 
 DOM tree를 일일이 조작하는 것보다 react element를 변경하는 작업은 tree 구조, 변경사항을 눈으로 바로 확인할 수 있어 직관적이고 편하다. 이러한 편의성은 많은 양의 작업을 한다고 가정할 때 유지보수성의 증가로 이어진다.
 
+### VDOM과 선언적 API?
 
+이는 재조정과 virtual DOM 에서 나오며 react의 virtual DOM 방식이 React의 선언적 API를 가능하게 한다. 선언적 API를 통해 '선언'만 하면 나머지 내부 동작은 신경쓰지 않아도 되는 정도로 추상화가 된다.
 
-
-변경 사항만 
-그리고
-규칙
-속성
-문자열 리터럴 - 따옴표
-attribute 내 JS 표현식 - 중괄호. camelCase (중괄호 주변 따옴표 사용 금지)
+휴리스틱 알고리즘 - 최적해를 찾지 못하거나 시간이 너무 걸릴 때 실용적인 방법을 도입해서 근사해를 구하는 접근법. 보통 경험칙, 시행착오, 상식적인 전략, 직관을 사용하여 문제를 해결한다. 이 접근법의 특징은 정확성을 희생해서 문제 해결 속도를 높이는 편이다.
 
 escape - URI로 전달 위한 문자열 인코딩 - https://opentutorials.org/course/50/191
 
@@ -117,29 +119,6 @@ facebook에서 2013년에 react library에서의 사용을 위해 만들었다.
 
 추가 - ECMAscript란? 관심사의 분리
 https://en.wikipedia.org/wiki/Separation_of_concerns
-
-syntactic sugar는 구문적으로 편하게 쓸 수 있는 방법 인것 같다
-
-react.createElement는 react 에서 html element를 만드는 메소드이다. jsx 없이 react에서 element 작성시 필수인것 같 다.
-
-react strict mode는 react에 엄청 엄격한 규칙을 적용하는 방법인것 같다.
-
-VDOM은 virtual dom 으로 front end framework 에서 사용한다. DOM 대신 VDOM을 사용한다. html css js 프레임워크 없는 구조에서는 DOM을 직접 조작하지만, framework 사용시 DOM을 virtual DOM으로 간접 조작한다. vdom을 중간에 두면 이점이 있는데 모르겠다.
-VDOM은 virtual DOM인데 DOM은 하나 변경시 모든게 업데이트 되지만 VDOM은 해당 부분과 하위 부분만 업데이트 된다.
-VDOM은 관리와 유지보수 측면
-Reconciliation (재조정) 뭔가 화면 업데이트 관련해서 재조정을 수행한다는 것 같다.
-
-## 학습 키워드
-
-- React에서 JSX를 사용하는 목적
-- Syntactic sugar
-- React.createElement
-- React Element
-- React StrictMode
-- VDOM(Virtual DOM)이란?
-  - DOM이란?
-  - DOM과 Virtual DOM의 차이
-- Reconciliation(재조정) 과정은 무엇인가?
 
 ## reference
 
