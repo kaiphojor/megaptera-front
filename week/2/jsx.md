@@ -83,7 +83,7 @@ root.render(
 
 ## DOM이란?
 
-Document Object Model. 문서 객체 모델로 HTML/XML 문서에 대한 programming  interface 이다. Document에는 page content가 저장되어 있고 Javascript로 접근해서 조작이 가능하다. Document는 Node들이 모인 tree 형태로 표현 되어있기에 DOM Tree 라고 한다. API(web/xml)는 뭉뚱그려 말하자면 DOM과 script 언어의 조합이다.
+Document Object Model. 문서 객체 모델로 HTML/XML 문서에 대한 programming interface 이다. Document에는 page content가 저장되어 있고 Javascript로 접근해서 조작이 가능하다. Document는 Node들이 모인 tree 형태로 표현 되어있기에 DOM Tree 라고 한다. API(web/xml)는 뭉뚱그려 말하자면 DOM과 script 언어의 조합이다.
 
 dom interface에서 주요 object는 브라우저를 뜻하는 `window` 와 root document를 가리키는 `Document`가 있다. `Node` interface 에서 상속받은 `Node` 와 `Element` 가 있고, `Element` interface 또한 있다.
 
@@ -114,6 +114,14 @@ DOM tree를 일일이 조작하는 것보다 react element를 변경하는 작�
 
 이는 재조정과 virtual DOM 에서 나오며 react가 지원하는 선언적 API가 component, element에 대해 정의만 해두면 갱신 사항들에 대해 매번 무엇이 어떻게 바뀌는지 신경 안써도 되게끔 해준다. 매번 어떤식으로 바뀌는지는 위 Virtual DOM의 차이를 보면 된다.
 
+```text
+the point of React is dividing UI in declarative components - by dan abramov
+```
+
+선언적인 component로 UI를 나누는 것이 React의 요점이다. 속도가 아니라.
+고로 React는 선언적 component로 UI를 구획화하기에 가독성과 편집에 용이하다.
+이는 유지보수성이 좋다는 결론으로 이어진다.
+
 #### 명령형 프로그래밍
 
 전역적인 상태와 상태를 변경시키는 명령문들을 순서대로 수행하는 프로그래밍 패러다임
@@ -131,7 +139,7 @@ DOM tree를 일일이 조작하는 것보다 react element를 변경하는 작�
 
 * '무엇을' 할 것인가? WHAT?
 * 식 / 선언으로 수행됨
-* Expression(식) : 함수 호출,
+* Expression(식) : 함수 호출 등.
 * Web Page, XML : 선언형. 무엇을 표시할 것인지 묘사한다.
 * 목표를 명시한다.
 * 함수형 프로그래밍 언어 : 수학적 함수 계산으로 취급. 프로그램 상태 값을 바꾸지 않음
