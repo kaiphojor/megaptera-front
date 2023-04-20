@@ -20,10 +20,6 @@ React에서는 JSX를 통해 element를 트리 구조로 보기 쉽게 표현할
 
 React application에서 화면을 그려주는 최소 구성 단위. 일반 객체로 받아들여진다. ReactDOM에서 root DOM 노드를 등록한뒤, root DOMnode 밑에 DOM element를 등록한다. ReactDOM은 등록된 모든 element들을 관리하며 그것들의 정보를 DOM에 업데이트한다.
 
-### jsx 와 jsp
-
-JSX는 코드 삽입 면에서는 JSP하고 반대이다. 갑자기 java이야기이지만 jsp가 html 내 java코드를 삽입할 수 있게 만든 것이라면 JSX는 js 코드내 마크업을 삽입하기 위한 문법의 확장이다. 하지만 변환이 모두 코드로 된다는 점은 동일하다. JSP는 servlet Java/class 파일로 바뀌고, JSX 도 결국 js 코드에 1대1로 js 함수화, 객체화 변환되어 js 파일에 녹아들기 때문이다. 그리고 이 둘이 UI를 각각 java/js 로직으로 그려낸다는 점에서 비슷한 것 같다.
-
 ### jsx없이 마크업 생성
 
 JSX 코드는 `<p>Hello, world!</p>` 라고 할 때 해당 코드는 js 코드로 `React.createElement("p", null, "Hello, world!");` 로 변환 된다. 태그 하나에 `React.createElement` 하나가 대응된다.
@@ -157,9 +153,13 @@ the point of React is dividing UI in declarative components - by dan abramov
 * CSS : 요소에 적용할 스타일 정의만 하면 알아서 잘 style 처리 해서 page rendering 함. CSSOM 이 어떻게 돌아가야 할지 신경 안써도 됨.
 * GraphQL : 필요한 데이터를 선언시, 서버가 데이터를 구조화된 형식으로 알아서 잘 반환해줌. API 용 query 언어
 
-### VDOM 과 더블 버퍼링?
+### 단상 - VDOM 과 더블 버퍼링?
 
-이중 버퍼링은 그래픽 분야에서 메모리 상에 버퍼를 하나 더 추가해서 티어링이나 플리커링 같은 화면 표시 상의 치명적인 문제를 보완하는 기법이다. 이걸 VDOM을 보고 왜 떠올렸느냐 하면 VDOM 역시 DOM을 직접 수정하는 것이 아니라 일종의 buffer역할을 하는 VDOM을 추가해서 처리하기 때문이다. 더블 버퍼링은 이미지가 다 그려지면 그제서야 쓰는 버퍼로 옮겨서 출력해서 화면이 찢어지는것을 방지하고, Virtual DOM은 DOM 이전에 추가되어서 유지보수성을 증가시키고, 렌더링 효율을 올린다. 중간 단계를 추가해서 이점을 얻는다는 점에서 연상이 되었다.
+이중 버퍼링은 그래픽 분야에서 메모리 상에 버퍼를 하나 더 추가해서 티어링이나 플리커링 같은 화면 표시 상의 치명적인 문제를 보완하는 기법이다. 이걸 VDOM을 보고 왜 떠올렸느냐 하면 VDOM 역시 DOM을 직접 수정하는 것이 아니라 일종의 buffer역할을 하는 VDOM을 추가해서 처리하기 때문이다. 더블 버퍼링은 이미지가 다 그려지면 그제서야 쓰는 버퍼로 옮겨서 출력해서 화면이 찢어지는것을 방지하고, Virtual DOM은 DOM 이전에 추가되어서 유지보수성을 증가시킨다. 중간 단계를 추가해서 이점을 얻는다는 점에서 연상이 되었다.
+
+### 단상 - jsx 와 jsp?
+
+JSX는 코드 삽입 면에서는 JSP하고 반대이다. 갑자기 java이야기이지만 jsp가 html 내 java코드를 삽입할 수 있게 만든 것이라면 JSX는 js 코드내 마크업을 삽입하기 위한 문법의 확장이다. 하지만 변환이 모두 코드로 된다는 점은 동일하다. JSP는 servlet Java/class 파일로 바뀌고, JSX 도 결국 js 코드에 1대1로 js 함수화, 객체화 변환되어 js 파일에 녹아들기 때문이다. 그리고 이 둘이 UI를 각각 java/js 로직으로 그려낸다는 점에서 비슷한 것 같다.
 
 ## 기타
 
