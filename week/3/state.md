@@ -2,7 +2,14 @@
 
 ## State 란?
 
-한 화면 UI를 나눈 조각이 Component라면, Component는 특정 상태에 따라 표시하는 부분이 달라질 수 있다. 가변적인 상태를 React에서 State 라고 한다.
+한 화면 UI를 나눈 조각이 Component라면, Component는 특정 상태에 따라 표시하는 부분이 달라질 수 있다. 변하는 component를 결정하는 가변적인 상태를 React의 State이다.
+
+### step by step
+
+* UI 간단하게 component로 나눠보기
+* component hierarchy 정하기 
+* 정적인 버전 제작하기(노가다) . 간단한 프로젝트 top down 대규모 프로젝트 bottom up
+
 
 ### SSOT가 나온 이유는? state와의 관계는 ?
 
