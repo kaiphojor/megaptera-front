@@ -18,4 +18,3 @@
   * [JSX](week/2/jsx.md)
 * [week 3 - State](week/3/README.md)
   * [State](week/3/state.md)
-  

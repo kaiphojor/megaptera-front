@@ -1,9 +1,40 @@
 # React Component
 
-- REST API 와 GraphQL
-    - REST API 란 무엇인가
-    - GraphQL은 왜 등장했는가?
-    - REST API vs GraphQL
+## JSON
+
+javascript 객체 표기법을 활용한 data 교환용 표준 포맷. 더글라스 크록포드(Douglas Crockford)가 만들었다. js 외에도 언어에 구애받지 않고 웹상에서 구조화된 데이터를 주고 받을 때 표현방식으로 사용한다.
+보낼때는 Stringify 해서 문자열로 만들어 전송에 용이하게 만들어 보낸다.
+받은 이후에는 문자열 형태의 데이터를 parsing 해서 사용하기 좋게 JSON 객체 형식으로 변환한다. 직렬화 역직렬화와 유사하다는 생각이 든다.
+
+B/E 에서는 데이터를 JSON의 형태로 받아오게 되는데, 데이터를 받기 위한 API로 REST API 방식 혹은 GraphQL이 있다.
+
+## DSL(Domain-Specific Language) - 도메인 특화 언어
+
+특정 도메인/문제에 최적화된 언어. React에서 쓰는 DSL에는 JSX(JS XML)가 있다. UI를 구성하는 문제(도메인)이 있고, 해당 문제를 XML 비슷한 구문으로 구성해린다. language는 아니고 syntax extension이지만 특정 task를 위한 syntax 도 DSL로 친다.
+
+B/E에서 API를 통해 JSON 데이터를 받아오면 F/E 에서 UI를 구성하기위한 목적의 DSL - JSX(선언형 - HTML 처럼 대상을 명시)를 사용한다.
+
+## 선언형 프로그래밍
+
+명령형 프로그래밍이 아닌 프로그래밍 패러다임. 수행 대상에 대한 선언이나 함수호출을 하는 식으로 자료를 처리하는 프로그래밍 패러다임
+
+* '무엇을' 할 것인가? WHAT?
+* 식 / 선언으로 수행됨
+* Expression(식) : 함수 호출 등.
+* HTML, CSS , XML, JSX : 선언형. 무엇을 표시할 것인지 묘사한다.
+* 목표를 명시한다.
+* 함수형 프로그래밍 언어 : 수학적 함수 계산으로 취급. 프로그램 상태 값을 바꾸지 않음
+
+## 명령형 프로그래밍
+
+전역적인 상태와 상태를 변경시키는 명령문을 순차 수행하는 프로그래밍 패러다임
+
+* '어떻게' 할 것인가? HOW?
+* C, Java
+* 명령형. 이렇게 저렇게 해라.
+* 알고리즘을 명시한다.
+* 상태/ 변수를 변경
+* Statement(문) - for, if, while, switch 등
 
 ## REST API
 
@@ -60,8 +91,6 @@ RESTful API의 이점
 
 ### GraphQL은 왜 등장했는가?
 
-#### GraphQL이 뭔가?
-
 API를 위한 쿼리 언어이자, 기존 데이터로 해당 쿼리 수행하기 위한 기반 런타임이다. API의 데이터에 대한 완벽하고 이해가능한 설명을 제공한다. 그리고 필요로 하는 데이터만 정확히 질의 가능하다. 기존 query에 영향을 끼치지 않고 새 field/type을 추가하는 것(버전 없이 API 발전)이 가능하다. 그리고 강력한 개발자 도구를 제공한다.
 
 data를 정의하는 type system을 이용하는 server side runtime이다. GraphQL은 DB나 storage engine에 연결되지 않고 코드/ 데이터에 의해 지원받는다.
@@ -70,9 +99,11 @@ data를 정의하는 type system을 이용하는 server side runtime이다. Grap
 
 모두 클라이언트와 서버 간의 통신을 위한 웹 API 지만 차이가 있다.
 
-REST API는 HTTP 프로토콜의 구조와 제약 사항을 따르는 아키텍처 스타일입니다. REST API는 자원(resource)을 중심으로 설계되며, 자원을 URI(Uniform Resource Identifier)로 나타내고, 자원에 대한 행위는 HTTP 메소드(GET, POST, PUT, DELETE 등)를 사용하여 표현합니다. REST API는 네트워크 캐싱, 스케일링, 로드 밸런싱 등의 이점을 제공하지만, 복잡한 데이터 구조를 처리하기 어려운 단점이 있습니다.
+REST API는 HTTP 프로토콜의 구조와 제약 사항을 따르는 아키텍처 스타일. REST API는 자원(resource)을 중심으로 설계되며, 자원을 URI(Uniform Resource Identifier)로 나타내고, 자원에 대한 행위는 HTTP 메소드(GET, POST, PUT, DELETE 등)를 사용하여 표현한다. REST API는 네트워크 캐싱, 스케일링, 로드 밸런싱 등의 이점을 제공하지만, 복잡한 데이터 구조를 처리하기 어려운 단점이 있다.
 
-GraphQL은 Facebook에서 개발한 쿼리 언어 및 런타임입니다. GraphQL은 REST API의 단점을 보완하고, 클라이언트 측에서 쿼리를 작성하고, 서버 측에서 응답을 생성하는 방식으로 동작합니다. GraphQL은 클라이언트가 필요로 하는 데이터를 정확하게 요청할 수 있도록 해주며, 서버 측에서는 클라이언트의 요청에 대해 필요한 데이터만을 반환합니다. GraphQL은 복잡한 데이터 구조를 다루는 데 유용하며, 클라이언트 측에서 쿼리를 작성하는 데에는 높은 학습 곡선이 필요합니다.
+GraphQL은 Facebook에서 개발한 쿼리 언어 및 런타임. GraphQL은 REST API의 단점을 보완하고, 클라이언트 측에서 쿼리를 작성하고, 서버 측에서 응답을 생성하는 방식으로 동작한다. GraphQL은 클라이언트가 필요로 하는 데이터를 정확하게 요청할 수 있도록 해주며, 서버 측에서는 클라이언트의 요청에 대해 필요한 데이터만을 반환한다. GraphQL은 복잡한 데이터 구조를 다루는 데 유용하며, 클라이언트 측에서 쿼리를 작성하는 데에는 높은 학습 곡선이 필요하다.
+
+#### 표로 비교하는 REST API, GraphQL
 
 |                | **REST API** | **GraphQL**|
 |:---:|:---:|:---:|
@@ -80,25 +111,25 @@ GraphQL은 Facebook에서 개발한 쿼리 언어 및 런타임입니다. GraphQ
 | 무엇을 하는가 | REST API는 HTTP 메소드를 사용, 자원에 대한 행위를 나타냄 | GraphQL은 단일 엔드포인트를 사용, 클라이언트에서 요청하는 데이터 처리 |
 | 통신  | HTTP 통한 Client - server 통신 | HTTP,Web Socket 통한 Client - server 통신 |
 | READ | RESTful 엔드포인트는 고정 데이터 구조 반환              |  클라이언트가 쿼리를 통해 특정 데이터를 요청할 때 그 데이터에 상응하는 구조 반환             |
-| Updates   | HTTP 메소드 이용(PUT, POST, DELETE) | mutation 이용한 데이터 변경          |
+| UPDATES   | HTTP 메소드 이용(PUT, POST, DELETE) | mutation 이용한 데이터 변경          |
 | return Data 형태     | Endpoint 가 결정          | Client 가 결정            |
-| 캐시가능        | RESTful API 는 endpoint 단계에서 캐시가능하다 | GraphQL response 는 endpoint 단계에서 캐시 불가 |
-| Overfetching(과한 데이터 가져오기)  | RESTful APIs는 불필요한 데이터도 균일한 인터페이스 제약 조건 때문에 종종 포함된다.             | GraphQL queries는 오직 필요한 데이터만 요청 |
-| Underfetching(API 요청 하나로 부족) | RESTful API 는 필요 데이터를 위해 추가요청 필요할수도 | GraphQL query 는 한 요청에 필요한 모든 데이터 가져오기 가능 |
+| 캐시가능        | RESTful API 는 endpoint 단계에서 캐시 가능 | GraphQL response 는 endpoint 단계에서 캐시 불가 |
+| Overfetching<br>(과한 데이터 가져오기)  | RESTful APIs는 불필요한 데이터도 균일한 인터페이스 제약 때문에 종종 포함됨             | GraphQL query는 오직 필요한 데이터만 요청 |
+| Underfetching<br>(API 요청 하나로 부족) | RESTful API 는 필요 데이터를 위해 추가요청 필요할수도 | GraphQL query 는 한 요청에 필요한 모든 데이터 가져오기 가능 |
 | 스키마         | 필요없음                          | GraphQL API는 type / field 정의 위한 스키마 필요     |
 
+## SRP(단일 책임 원칙)
 
-BE에서 JSON 형태 데이터를 돌려주는 API를 제공한다고 가정하면 대부분은 REST API 또는 GRAPHQL 이다
+모든 클래스는 각각 하나의 변경 원인,근거(책임)를 가지고, 그것을 캡슐화(속성 행위를 묶어서 외부에 보이지 않게 숨김)해야 한다.
 
-rest api - GET, POST, PUT/PATCH , DELETE(CURD).
-Resource 중심
+React의 경우에는 관련 있는 UI/작업 들만 component 로 묶어버린다. 관련이 없는 다른 작업들은 다른 component로 분리를 하면 각 컴포넌트들을 재사용할 수 있고 유지보수성도 좋아진다.
 
-GRAPHQL
+CSS, layer의 분리 또한 코드들을 보면 이미 각각의 조각들이 책임/관심사에 따라 작게 분리가 되어 있음을 확인할 수 있다.
+IA의 경우 API에서 받아오는 잘 구조화된 데이터(JSON Schema) 영향으로 컴포넌트 계층을 나누게 된다. 나누는 과정에서 관련 있는 데이터 끼리 묶게 되다보니 SRP 원칙이 자연스럽게 녹아들 수 밖에 없다.
 
-- graph 자료구조
-- query에서 얻고자 하는 것을 스키마처럼 지정
-- query(읽기), mutation(Command: CUD), Subscription(Event 인지 용도. command 관련)
 
+
+- React component 와 props
 ## State 란?
 
 한 화면 UI를 나눈 조각이 Component라면, Component는 특정 상태에 따라 표시하는 부분이 달라질 수 있다. component를 변화를 결정하는 가변적인 상태를 React의 State이다.
@@ -157,6 +188,7 @@ inline function이 쓰이는 경우? SRP를 위한
 ## reference
 * [REST-wiki](https://ko.wikipedia.org/wiki/REST)
 * [REST-NAVER d2](https://www.youtube.com/watch?v=RP_f5dMoHFc&t=9s)
+* [DSL](https://www.jetbrains.com/ko-kr/mps/concepts/domain-specific-languages/)
 1. [jsx 공식문서](https://facebook.github.io/jsx/)
 
 - [inline-function](https://learn.microsoft.com/ko-kr/cpp/cpp/inline-functions-cpp?view=msvc-170)
@@ -168,19 +200,10 @@ inline function이 쓰이는 경우? SRP를 위한
   - GraphQL은 왜 등장했는가?
   - REST API vs GraphQL
 - JSON
-javascript 객체 표기법을 활용한 데이터 포맷, js 외에도 언어에 구애받지 않고 데이터를 주고 받을 때 표현방식으로 사용한다.
-보낼때는 Stringify 해서 문자열로 만들어 전송에 용이하게 만들어 보낸다.
-받은 이후에는 문자열 형태의 데이터를 parsing 해서 사용하기 좋게 JSON 객체 형식으로 변환한다. 직렬화 역직렬화와 유사하다는 생각이 든다.
 
-- DSL(Domain-Specific Language) - 도메인 특화 언어
-특정 도메인 풀기 쉽게 하기 위한 언어
-html 과 유사한 DSL을 사용
-- 선언형 프로그래밍 - 수행 대상에 대한 선언이나 함수호출을 하는 식을 다루는 프로그래밍 패러다임
-- 명령형 프로그래밍 - 상태와 상태변경 위한 명령문을 순차수행하는 프로그래밍 패러다임
-- SRP(단일 책임 원칙) - 모든 클래스는 각각 하나의 변경 원인,근거(책임)를 가지고, 그것을 캡슐화(속성 행위를 묶어서 외부에 보이지 않게 숨김)해야 한다.
-React의 경우에는 component를 기준으로 해서 state를 가변적인 책임으로 삼아 캡슐화 한다.
-css 도 class="asdf" 를통해 해당 클래스에 대한 내용을 넣어서 이미 쓰고 있다 .
-information architecture - JSON schema의 영향 : 잘구조화되어있을 때 데이터 모델을 자연스럽게
+
+
+
 - Atomic Design
 - React component 와 props
 
@@ -191,10 +214,3 @@ information architecture - JSON schema의 영향 : 잘구조화되어있을 때 
     - REST API 란 무엇인가
     - GraphQL은 왜 등장했는가?
     - REST API vs GraphQL
-- JSON
-- DSL(Domain-Specific Language)
-- 선언형 프로그래밍
-- 명령형 프로그래밍
-- SRP(단일 책임 원칙)
-- Atomic Design
-- React component 와 props
