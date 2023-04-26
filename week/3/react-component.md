@@ -1,4 +1,44 @@
-# State
+# React Component
+
+- REST API 와 GraphQL
+    - REST API 란 무엇인가
+    - GraphQL은 왜 등장했는가?
+    - REST API vs GraphQL
+
+## REST API
+
+### REST API 란?
+
+REST 최초정의는 roy fielding의 박사논문 에서 언급되었다.
+
+[Architectural Styles and the Design of Network-based Software Architectures](https://www.ics.uci.edu/~fielding/pubs/dissertation/rest_arch_style.htm)
+
+최초정의 - REST architecture style : 분산된 하이퍼미디어 시스템 속 아키텍처 요소를 추상화 함. component 역할/ 상호작용시 제약조건 / 중요 data element 해석에 집중하려고 component 구현/ protocol 구문 세부사항은 일부러 무시함
+
+-> 그렇기에 보면 큰 그림에서 REST 방식은 어떻게 돌아가는지 정도만 나타나 있지 다른 언어나 framework의 docs처럼 공식 문서의 문법에 대한 딱 정해진 세부사항은 없는 듯 하다.
+
+제약사항 - 해당 제약사항을 통해 간단하고, 확장성, 가시성, 사용성을 확보한 웹 서비스 구성이 가능하다. HTTP 저자가 만들었기에 http 특성도 일부 있다.
+
+* 클라이언트 서버 아키텍처 스타일 - UI 관심사와 데이터 관심사를 분리하는 관심사의 분리가 핵심. 분리를 하면 플랫폼 별 UI 이식성 향상 및 서버 확장성도
+꾀할 수 있다.
+* 무상태 - 요청시에 모든 정보를 담아야 하며 이전 요청의 맥락 그런건 기대하면 안된다. 이전에 보냈던 정보를 똑같이 담아야하는 트레이드 오프는 있지만, 가시성(요청 관련 정보를 다 보내므로), 확장성(상태 저장 안해서 자원 해제가 용이) 측면에서 감수할만하다.
+-> 확장성에 대해서 상태 즉 컨텍스트를 가진다는 것은 그 맥락을 서버 전체가 가지고 있어야 한다는 것과 동일하다. 그렇지 않으면 이전 요청을 받았던 서버만 응답이 가능하기에 서비스가 되지 않는다. 서버가 1대라고 가정하면 상관이 없을 것이다. 하지만 서버가 늘어날 수 있는 가능성(확장성)을 고려하면 무상태 방식으로 가는 것이 요청의 중복이 일어날 지언정 더 적절하다고 본다. 가시성은 말 그대로 이전 요청의 상태(컨텍스트)를 허용한다면 암묵적인 정보가 해당 요청시에 들어가게 되므로 보이지 않기에 나온 것이다. 무상태 서버 에서는 요청 처리에 필요한 모든 정보가 명시적으로 드러나기에 가시성 면에서 상태 서버 방식보다 낫다 .
+
+* 캐시 - 이전 응답 정보 중 재사용할만한 것들을 캐시로 저장해서 재활용하면 자원 낭비를 안해도 되어서 효율적이고 사용성도 좋아진다.
+-> 똑같은 요청을 계속 보내는데 그 요청이 GET 처럼 멱등적이라면 굳이 일일이 서버의 자원을 요청할 필요가 없는 것 처럼 말이다. 그리고 똑같은 것을 굳이 가져온다고 쳐도 클라이언트 - 서버 간 네트워크를 통해서 받아오는 것 보다 클라이언트 상의 브라우저 캐시에 접근해서 가져오는 것이 속도면에서 훨씬 빠르고 말이다. 물론 이것은 가져오는 자원이 급격하게 변하지 않는다는 전제에서 성립한다.
+
+* 통합 인터페이스 - component 간 통합 인터페이스 때문에 더 간단해지고 상호작용하는것도 더 가시적이다. 서비스 별 분리되어 있기에 독립적으로 발전 가능하다. 정보 전달시 해당 상황에 필요없는 정보도 표준화된 규격에 맞춰서 보내야 한다는 점은 비효율적이나(trade off), 대용량 하이퍼미디어 전송을 용이하게 해주므로 어느정도 감수할만하다.
+
+* 계층적 시스템
+
+[AWS - RESTful API](https://aws.amazon.com/ko/what-is/restful-api/)
+
+정의 - API가 작동하는 조건(제약사항)을 걸어주는 SW architecture이다.
+
+네트워크간 통신을 안정적으로 할 수있게끔 방향성과 제약사항이 제시되었다. 해당 키텍처를 따라 설계한 API를 REST(ful) API라 하고 REST 아키텍처를 구현한 web 서비스를 RESTful web 서비스라고 한다.
+
+조건
+1. 요청이 리소스를 식별
 
 BE에서 JSON 형태 데이터를 돌려주는 API를 제공한다고 가정하면 대부분은 REST API 또는 GRAPHQL 이다
 
@@ -74,12 +114,10 @@ inline function이 쓰이는 경우? SRP를 위한
 
 ## 학습 키워드
 
-- React state란?
-- DRY 원칙
-- SSOT(Single Source of Truth)
-- useState
-- 1급 객체(first-class object)란?
-- Lifting State Up
+- REST API 와 GraphQL
+  - REST API 란 무엇인가
+  - GraphQL은 왜 등장했는가?
+  - REST API vs GraphQL
 - JSON
 javascript 객체 표기법을 활용한 데이터 포맷, js 외에도 언어에 구애받지 않고 데이터를 주고 받을 때 표현방식으로 사용한다.
 보낼때는 Stringify 해서 문자열로 만들어 전송에 용이하게 만들어 보낸다.
@@ -94,5 +132,20 @@ html 과 유사한 DSL을 사용
 React의 경우에는 component를 기준으로 해서 state를 가변적인 책임으로 삼아 캡슐화 한다.
 css 도 class="asdf" 를통해 해당 클래스에 대한 내용을 넣어서 이미 쓰고 있다 .
 information architecture - JSON schema의 영향 : 잘구조화되어있을 때 데이터 모델을 자연스럽게
+- Atomic Design
+- React component 와 props
+
+
+## 학습 키워드
+
+- REST API 와 GraphQL
+    - REST API 란 무엇인가
+    - GraphQL은 왜 등장했는가?
+    - REST API vs GraphQL
+- JSON
+- DSL(Domain-Specific Language)
+- 선언형 프로그래밍
+- 명령형 프로그래밍
+- SRP(단일 책임 원칙)
 - Atomic Design
 - React component 와 props
