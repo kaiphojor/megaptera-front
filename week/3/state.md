@@ -1,98 +1,58 @@
 # State
 
-BE에서 JSON 형태 데이터를 돌려주는 API를 제공한다고 가정하면 대부분은 REST API 또는 GRAPHQL 이다
+## React UI 구성 방법
 
-rest api - GET, POST, PUT/PATCH , DELETE(CURD).
-Resource 중심
+React UI를 구성할 때 5단계를 거친다. 마지막 3 단계는
 
-GRAPHQL
+3. 상황별 UI를 모두 보여주는 최소한의 UI State 설정
+4. state를 관리하는 component 주체를 정한다.
+5. 하위 -> 상위 컴포넌트 방향으로 state 변경사항을 전달하는 inverse data flow를 추가한다
 
-- graph 자료구조
-- query에서 얻고자 하는 것을 스키마처럼 지정
-- query(읽기), mutation(Command: CUD), Subscription(Event 인지 용도. command 관련)
+## DRY 원칙
 
-## State 란?
+Don't repeat yourself - 복사 붙여넣기 하지 말기
 
-한 화면 UI를 나눈 조각이 Component라면, Component는 특정 상태에 따라 표시하는 부분이 달라질 수 있다. component를 변화를 결정하는 가변적인 상태를 React의 State이다.
-
-### step by step
-
-- UI 간단하게 component로 나눠보기 - UI를 컴포넌트 계층구조로 나누기
-- component hierarchy 정하기
-- 데이터 모델을 렌더링한 정적인 버전 제작하기(노가다) . 간단한 프로젝트 top down 대규모 프로젝트 bottom up
-이때 props는 데이터 전달용으로 쓰는데, state는 상호작용성을 위한 것이므로 정적인 react코드 작성시에는 추가하지 않는다 .
-오직 jsx 리턴. props tow down 방식 전달
-
-상황별 UI를 모두 보여주는 최소한의 UI State 정의
-state 아닌것
-
-- 불변하는 것 - 상태가 가변적인 것을 상정하는데 불변하면 Nonsense
-- props 통해 부모 component에게서 전달됨 - 그럼 props이지 state 아님.
-- state/ props로 계산 가능 - '최소한의 정의'를 위반함
-
-판별 결과
-
-- product list - props로 전달되는 것
-- 검색어/ checkbox - state.
-- filtered list - 계산 되는 것
-
-어느 component에서 state 변경을 책임질 지 정하기(소유할 component 정하기)
-
-- state 사용하는 component 찾기 -> 공동 부모 찾기 -> 어디에 state를 관리할지 정하기
-정해서 부모 component일 경우 props 처럼 내려 보낸다 .
-
-### SSOT가 나온 이유는? state와의 관계는 ?
+### SSOT
 
 데이터는 딱 한곳에서 제어, 조작하는 정보모델이 SSOT(Single Source of Truth) 이다. 현실세계에서 국민의 의료정보를 한곳에서 통합관리하고 각 병원에서 이걸 참조하는 사례도 이 모델에 해당한다.
 
 State도 마찬가지다. 같은 state를 여러 군데에서 독자적으로 중구난방 사용하면 관리가 제대로 안된다. 만약 독자적인 state가 있고 이것을 모두 동기화 해준다면 일일이 업데이트를 해줘야 하니 state를 이용하는 과정보다 state 동기화 하는 과정이 더 많이 걸리게 될 수도 있다. 그렇게 보면 하나로 정해서 관리하는 것이 효율적인 방식이다.
 
-state를 묶어서 관리하는 단위를 component라고 한다.
+## State 란?
+
+한 화면 UI를 나눈 조각이 Component라면, Component는 특정 상태에 따라 표시하는 부분이 달라질 수 있다. component의 변화를 결정하는 가변적인 상태를 React의 State이다.
+
+일관성 및 효율을 위해 DRY 원칙을 따르는 SSOT를 만들기. 중복을 지양하는 state를 만들기.
+
+원칙을 따랐을 때 state가 아닌것
+
+* 불변하는 것 - 상태가 가변적인 것을 상정하는데 불변하면 Nonsense
+* props 통해 부모 component에게서 전달됨 - 그럼 props이지 state 아님.
+* state/ props로 계산 가능 - '최소한의 정의'를 위반함
+
+## useState
+
+component에 state variable과 set function을 추가하는 react hook 이다.
+
+```typescript
+const [state, setState] = useState(initialState);
+```
+
+## 1급 객체
+
+javascript에서 함수는 first-class object로 객체취급을 받으며, 함수 자체를 함수의 인자로 쓸수 있고, 함수 객체를 return 값으로 사용할 수 있다.
+
+그렇기에 component 분리를 할 때 자식 component에서 상위에서 초기화된 setState에 접근할 필요가 생긴다. 상위 component 에서 하위 component로  props를 내려 보낼 수 있는데, javascript의 함수가 1급 객체 이기에 props로 setState를 내려보낼 수 있는 것이다. 익명함수, 클로저와 궁합이 좋아서 같이 쓰면 시너지 효과가 난다.
+
+## Lifting State Up
+
+state를 component 하나만 쓰는 경우도 있지만, 여러곳에서 쓰이는 경우도 있다. 그런 경우에는 state를 state 사용하는 component들의 공통 조상까지 끌어올리는 lift up 작업이 필요하다. DRY 원칙에 따른 SSOT 인 상태로 state를 만들기에 하나로 만들어야 한다. 그렇게 올리면 해당 부모가 state를 소유한다/책임진다.
 
 ## inverse data flow
 
-state의 경우 부모에서 자식으로 top down 방식 전달이 일반적이다. 하지만 반대로 자식에 속한 form component에서 입력값 변경시 부모에 속한 state 값을 변경해야 하는 경우도 생긴다. 그럴 때는 자식에 함수를 정해줄 때 hook도 전달한다. hook은 자식 component에서 event 발생시에 변경하는 식으로 명시적으로 연결해준다
-
-### 그러면 단계가 여러개일 경우 어떻게?
-
-inline function이 쓰이는 경우? SRP를 위한
-
-- 한번만 쓰는 경우 - 재사용할 여지 없을 때 호출 오버헤드를 제거한다.
-- 나누기 애매할때 - SRP를 위해 굳이 나눠야할까 싶을 정도로 애매할 때.
+state의 경우 부모에서 자식으로 top down 방식 전달이 일반적이다. 하지만 반대로 자식에 속한 form component에서 입력값 변경시 부모에 속한 state 값을 변경해야 하는 경우도 생긴다. 그럴 때는 자식에 함수를 정해줄 때 hook도 전달한다. hook은 자식 component에서 event 발생시에 변경하는 식으로 명시적으로 연결해준다. 이런 것을 콜백 함수라고 부른다.
 
 ## 기타
 
-- golden record - 정리 필요
-- inline function - 함수 호출 부분에 코드를 박아버린 함수. 호출시 발생하는 오버헤드가 없다.
-- mock up 가짜 데이터
+* golden record
 
-## reference
-
-1. [jsx 공식문서](https://facebook.github.io/jsx/)
-
-- [inline-function](https://learn.microsoft.com/ko-kr/cpp/cpp/inline-functions-cpp?view=msvc-170)
-
-## 학습 키워드
-
-- React state란?
-- DRY 원칙
-- SSOT(Single Source of Truth)
-- useState
-- 1급 객체(first-class object)란?
-- Lifting State Up
-- JSON
-javascript 객체 표기법을 활용한 데이터 포맷, js 외에도 언어에 구애받지 않고 데이터를 주고 받을 때 표현방식으로 사용한다.
-보낼때는 Stringify 해서 문자열로 만들어 전송에 용이하게 만들어 보낸다.
-받은 이후에는 문자열 형태의 데이터를 parsing 해서 사용하기 좋게 JSON 객체 형식으로 변환한다. 직렬화 역직렬화와 유사하다는 생각이 든다.
-
-- DSL(Domain-Specific Language) - 도메인 특화 언어
-특정 도메인 풀기 쉽게 하기 위한 언어
-html 과 유사한 DSL을 사용
-- 선언형 프로그래밍 - 수행 대상에 대한 선언이나 함수호출을 하는 식을 다루는 프로그래밍 패러다임
-- 명령형 프로그래밍 - 상태와 상태변경 위한 명령문을 순차수행하는 프로그래밍 패러다임
-- SRP(단일 책임 원칙) - 모든 클래스는 각각 하나의 변경 원인,근거(책임)를 가지고, 그것을 캡슐화(속성 행위를 묶어서 외부에 보이지 않게 숨김)해야 한다.
-React의 경우에는 component를 기준으로 해서 state를 가변적인 책임으로 삼아 캡슐화 한다.
-css 도 class="asdf" 를통해 해당 클래스에 대한 내용을 넣어서 이미 쓰고 있다 .
-information architecture - JSON schema의 영향 : 잘구조화되어있을 때 데이터 모델을 자연스럽게
-- Atomic Design
-- React component 와 props

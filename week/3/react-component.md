@@ -4,8 +4,10 @@
 
 React UI를 구성할 때 5단계를 거친다. 처음 두 단계는
 
-1. 처음에는 UI를 component라는 조각들의 계층으로 분할한다.
+1. UI 간단하게 component로 나눠보기 - UI를 컴포넌트 계층구조로 나누기
 2. react의 정적인 버전(상호작용성을 배제한)을 만든다.
+
+2단계 -> 이때 props는 데이터 전달용으로 쓰는데, state는 상호작용성을 위한 것이므로 정적인 react코드 작성시에는 추가하지 않는다.
 
 ## JSON
 
@@ -153,66 +155,15 @@ IA의 경우 API에서 받아오는 잘 구조화된 데이터(JSON Schema) 영�
 
 그리고 계층구조에서 빌드는 규모에따라서 크면 상향식,  작으면 하향식으로 가는 것이 좋다.
 
+## inline function이 쓰이는 경우
 
+inline function - 함수 호출 부분에 코드를 박아버린 함수. 호출시 발생하는 오버헤드가 없다.
 
-## State 란?
-
-한 화면 UI를 나눈 조각이 Component라면, Component는 특정 상태에 따라 표시하는 부분이 달라질 수 있다. component를 변화를 결정하는 가변적인 상태를 React의 State이다.
-
-### step by step
-
-- UI 간단하게 component로 나눠보기 - UI를 컴포넌트 계층구조로 나누기
-- component hierarchy 정하기
-- 데이터 모델을 렌더링한 정적인 버전 제작하기(노가다) . 간단한 프로젝트 top down 대규모 프로젝트 bottom up
-이때 props는 데이터 전달용으로 쓰는데, state는 상호작용성을 위한 것이므로 정적인 react코드 작성시에는 추가하지 않는다 .
-오직 jsx 리턴. props tow down 방식 전달
-
-상황별 UI를 모두 보여주는 최소한의 UI State 정의
-state 아닌것
-
-- 불변하는 것 - 상태가 가변적인 것을 상정하는데 불변하면 Nonsense
-- props 통해 부모 component에게서 전달됨 - 그럼 props이지 state 아님.
-- state/ props로 계산 가능 - '최소한의 정의'를 위반함
-
-판별 결과
-
-- product list - props로 전달되는 것
-- 검색어/ checkbox - state.
-- filtered list - 계산 되는 것
-
-어느 component에서 state 변경을 책임질 지 정하기(소유할 component 정하기)
-
-- state 사용하는 component 찾기 -> 공동 부모 찾기 -> 어디에 state를 관리할지 정하기
-정해서 부모 component일 경우 props 처럼 내려 보낸다 .
-
-### SSOT가 나온 이유는? state와의 관계는 ?
-
-데이터는 딱 한곳에서 제어, 조작하는 정보모델이 SSOT(Single Source of Truth) 이다. 현실세계에서 국민의 의료정보를 한곳에서 통합관리하고 각 병원에서 이걸 참조하는 사례도 이 모델에 해당한다.
-
-State도 마찬가지다. 같은 state를 여러 군데에서 독자적으로 중구난방 사용하면 관리가 제대로 안된다. 만약 독자적인 state가 있고 이것을 모두 동기화 해준다면 일일이 업데이트를 해줘야 하니 state를 이용하는 과정보다 state 동기화 하는 과정이 더 많이 걸리게 될 수도 있다. 그렇게 보면 하나로 정해서 관리하는 것이 효율적인 방식이다.
-
-
-## inverse data flow
-
-state의 경우 부모에서 자식으로 top down 방식 전달이 일반적이다. 하지만 반대로 자식에 속한 form component에서 입력값 변경시 부모에 속한 state 값을 변경해야 하는 경우도 생긴다. 그럴 때는 자식에 함수를 정해줄 때 hook도 전달한다. hook은 자식 component에서 event 발생시에 변경하는 식으로 명시적으로 연결해준다
-
-### 그러면 단계가 여러개일 경우 어떻게?
-
-inline function이 쓰이는 경우? SRP를 위한
-
-- 한번만 쓰는 경우 - 재사용할 여지 없을 때 호출 오버헤드를 제거한다.
-- 나누기 애매할때 - SRP를 위해 굳이 나눠야할까 싶을 정도로 애매할 때.
-
-## 기타
-
-- golden record - 정리 필요
-- inline function - 함수 호출 부분에 코드를 박아버린 함수. 호출시 발생하는 오버헤드가 없다.
-- mock up 가짜 데이터
+* 한번만 쓰는 경우 - 재사용할 여지 없을 때 호출 오버헤드를 제거한다.
+* 나누기 애매할때 - SRP를 위해 굳이 나눠야할까 싶을 정도로 애매할 때.
 
 ## reference
 
 * [REST-wiki](https://ko.wikipedia.org/wiki/REST)
 * [REST-NAVER d2](https://www.youtube.com/watch?v=RP_f5dMoHFc&t=9s)
 * [DSL](https://www.jetbrains.com/ko-kr/mps/concepts/domain-specific-languages/)
-
-## 학습 키워드
