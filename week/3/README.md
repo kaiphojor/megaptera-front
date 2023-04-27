@@ -8,5 +8,5 @@
 
 ## 목차
 
-1. [State](/week/3/state.md)
-2. [Component](/week/3/react-component.md)
+1. [Component](/week/3/react-component.md)
+2. [State](/week/3/state.md)
