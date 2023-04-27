@@ -138,7 +138,7 @@ the point of React is dividing UI in declarative components - by dan abramov
 * '무엇을' 할 것인가? WHAT?
 * 식 / 선언으로 수행됨
 * Expression(식) : 함수 호출 등.
-* Web Page, XML : 선언형. 무엇을 표시할 것인지 묘사한다.
+* HTML, CSS, XML, JSX : 선언형. 무엇을 표시할 것인지 묘사한다.
 * 목표를 명시한다.
 * 함수형 프로그래밍 언어 : 수학적 함수 계산으로 취급. 프로그램 상태 값을 바꾸지 않음
 
