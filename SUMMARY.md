@@ -17,5 +17,5 @@
 * [week 2 - JSX](week/2/README.md)
   * [JSX](week/2/jsx.md)
 * [week 3 - Thinking in React](week/3/README.md)
-  * [State](week/3/state.md)
   * [Component](week/3/react-component.md)
+  * [State](week/3/state.md)
