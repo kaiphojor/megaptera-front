@@ -1,5 +1,12 @@
 # React Component
 
+## React UI 구성 방법
+
+React UI를 구성할 때 5단계를 거친다. 처음 두 단계는
+
+1. 처음에는 UI를 component라는 조각들의 계층으로 분할한다.
+2. react의 정적인 버전(상호작용성을 배제한)을 만든다.
+
 ## JSON
 
 javascript 객체 표기법을 활용한 data 교환용 표준 포맷. 더글라스 크록포드(Douglas Crockford)가 만들었다. js 외에도 언어에 구애받지 않고 웹상에서 구조화된 데이터를 주고 받을 때 표현방식으로 사용한다.
@@ -124,12 +131,30 @@ GraphQL은 Facebook에서 개발한 쿼리 언어 및 런타임. GraphQL은 REST
 
 React의 경우에는 관련 있는 UI/작업 들만 component 로 묶어버린다. 관련이 없는 다른 작업들은 다른 component로 분리를 하면 각 컴포넌트들을 재사용할 수 있고 유지보수성도 좋아진다.
 
-CSS, layer의 분리 또한 코드들을 보면 이미 각각의 조각들이 책임/관심사에 따라 작게 분리가 되어 있음을 확인할 수 있다.
+CSS, layer 에 따라서 어떻게 조직할지 결정을 한다.
+
 IA의 경우 API에서 받아오는 잘 구조화된 데이터(JSON Schema) 영향으로 컴포넌트 계층을 나누게 된다. 나누는 과정에서 관련 있는 데이터 끼리 묶게 되다보니 SRP 원칙이 자연스럽게 녹아들 수 밖에 없다.
 
+## Atomic Design
+
+웹 디자인시에 계층형 구조로 나눌 때 화학에서의 맥락을 집어넣었다.
+
+1. atom(원자) : 물질을 이루는 가장 작은 단위. 기본적인 마크업 하나를 뜻한다. 색상 정보, 폰트, animation 같은 추상적인 요소도 atom 단위로 포함된다.
+2. molecule(분자) : 두개 이상의 원자가 일정한 형태로 결합한 것. atom 이 여러개 모인 것들의 묶음이고, 재사용을 위해 만들어진 비교적 단순한 조합이다.
+3. organism(유기체) : molcule이 여러개 보여서 만든 뚜렷한 인터페이스 부분
+4. template : organism의 그룹. 디자인이 완성되고 레이아웃이 실제로 작동함. 4단계에서는 화학비유를 안쓰기 시작한다.
+5. page : placeholder의 content가 실제 대표 컨텐츠로 대체됨. 사용자가 최종적으로 보는 모습을 정확히 묘사한다.
+
+컴포넌트 계층 구조를 나눌 때 꼭 완전히 적용하는 것이 아니더라도 참고하면 좋을 것 같다.
+
+## React component 와 props
+
+정적 버전의 앱을 만들시 component를 재사용하고 props로 data를 전달해서 새로운 component를 만드는 것이 좋다. props는 부모 component에서 자식으로 단방향으로 전달된다.
+
+그리고 계층구조에서 빌드는 규모에따라서 크면 상향식,  작으면 하향식으로 가는 것이 좋다.
 
 
-- React component 와 props
+
 ## State 란?
 
 한 화면 UI를 나눈 조각이 Component라면, Component는 특정 상태에 따라 표시하는 부분이 달라질 수 있다. component를 변화를 결정하는 가변적인 상태를 React의 State이다.
@@ -166,7 +191,6 @@ state 아닌것
 
 State도 마찬가지다. 같은 state를 여러 군데에서 독자적으로 중구난방 사용하면 관리가 제대로 안된다. 만약 독자적인 state가 있고 이것을 모두 동기화 해준다면 일일이 업데이트를 해줘야 하니 state를 이용하는 과정보다 state 동기화 하는 과정이 더 많이 걸리게 될 수도 있다. 그렇게 보면 하나로 정해서 관리하는 것이 효율적인 방식이다.
 
-state를 묶어서 관리하는 단위를 component라고 한다.
 
 ## inverse data flow
 
@@ -186,31 +210,9 @@ inline function이 쓰이는 경우? SRP를 위한
 - mock up 가짜 데이터
 
 ## reference
+
 * [REST-wiki](https://ko.wikipedia.org/wiki/REST)
 * [REST-NAVER d2](https://www.youtube.com/watch?v=RP_f5dMoHFc&t=9s)
 * [DSL](https://www.jetbrains.com/ko-kr/mps/concepts/domain-specific-languages/)
-1. [jsx 공식문서](https://facebook.github.io/jsx/)
-
-- [inline-function](https://learn.microsoft.com/ko-kr/cpp/cpp/inline-functions-cpp?view=msvc-170)
 
 ## 학습 키워드
-
-- REST API 와 GraphQL
-  - REST API 란 무엇인가
-  - GraphQL은 왜 등장했는가?
-  - REST API vs GraphQL
-- JSON
-
-
-
-
-- Atomic Design
-- React component 와 props
-
-
-## 학습 키워드
-
-- REST API 와 GraphQL
-    - REST API 란 무엇인가
-    - GraphQL은 왜 등장했는가?
-    - REST API vs GraphQL
