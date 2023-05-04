@@ -38,6 +38,8 @@ clean up 이 필요할 때에는 return 시에 정리 함수를 반환 한다.
 
 react component가 뭘하던간에 1초 1초가 지나면 갱신되기에 시간또한 갱신되어야 할 외부효과에 해당한다.
 
+의존성 배열을 통해 변화시에 rerendering할 state를 지정할 수 있다. 빈 배열일 경우 한번만 실행하고, 아닌 경우에는 하나씩 하나씩 추가해줄 수 있다.
+
 ## useContext
 
 [useContext](https://react.dev/reference/react/useContext)는 component의 [context](https://react.dev/learn/passing-data-deeply-with-context) 를 읽고 구독하는 hook이다.
@@ -70,4 +72,5 @@ const value = useContext(MyContext);
 useEffect와 비슷하나 browser가 DOM 업데이트 이전에 시행한다. DOM 구성 이전에 수행되므로 DOM을 `useLayoutEffect`에서 수정할 수 있다. 서버측의 렌더링하고 호환되지 않는 경우 에러 발생할 수 있으므로 그때는 useEffect를 사용할 수 있다.
 
 ## React StrictMode 란
+
 개발 시에 혹시 모를 예기치 못한 상황을 감지하기 위해 원하는 component 범위에 둘러쌓는 내장 component 이다. 해당 모드 적용시에는 비교를 위해 두번 시행되기 때문에 효과도 두번 발생한다.
