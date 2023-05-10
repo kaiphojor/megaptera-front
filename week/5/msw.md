@@ -42,7 +42,7 @@ MSW의 service worker는 웹 앱과 브라우저 사이에서 작동하는 중�
 fetch가 browser에서는 되는데 node에서는 동작안한다
 window.fetch에서 되는 것을 node 에서는 github에서 만든 fetch polyfill whatwg-fetch 를 써준다.
 
-[polyfill](https://developer.mozilla.org/ko/docs/Glossary/Polyfill) 은 최신에서 지원하지만 구 버전/플랫폼/브라우저 에서 구현이 안된 기능을 동일하게 기능하도록 지원하는 라이브러리이다. polyfill 은 이전의 대상에서 지원안하는 많은 기능을(poly) 구현해서 채워준다(fill) 는 것에서 유래되었다.
+[polyfill](https://developer.mozilla.org/ko/docs/Glossary/Polyfill) 은 최신 javascript 에서 지원하지만 구 버전 브라우저 에서 동작 안하는 기능을 동일하게 기능하도록 지원하는 라이브러리이다. polyfill 은 이전의 대상에서 지원안하는 많은 기능을(poly) 구현해서 채워준다(fill) 는 것에서 유래되었다.
 
 polyfill을 다 구현해놓은 것이나 ponyfill은 필요한 것만 선택적으로 로드 할 수 있게 만들어서 번들링시 경량화를 할 수있다는 이점이 있다.
 
