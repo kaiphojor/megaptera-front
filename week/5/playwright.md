@@ -1,4 +1,13 @@
-# playwright
+# Playwright
+
+## E2E(End to End) Test
+
+
+
+- Headless Chrome
+- Puppeteer
+- Playwright
+- CodeceptJS
 
 e2e 테스트 자동화 도구
 

@@ -20,13 +20,11 @@ TDD를 하면 운영상에 발생할 수 있는 문제들을 TDD를 진행하는
 
 다만, TDD를 시간낭비라고 생각하지 않는 분위기가 형성이 되어야 적용이 가능할 듯하다.
 
-
 ## Jest
 
 페이스북(메타)에서 만든 [테스팅 프레임워크](https://jestjs.io/)
 
 설정 없이 빠르게 사용할 수 있고, 자동 mocking, 병렬실행으로 시간도 절약할 수 있다.
-
 
 테스트 케이스 방식
 
@@ -52,17 +50,17 @@ TDD를 하면 운영상에 발생할 수 있는 문제들을 TDD를 진행하는
 const context = describe;
 
 describe('add', () => {
-	context('with no argument', () => {
-		it('returns zero', () => {
-			expect(add()).toBe(0);
-		});
-	});
+  context('with no argument', () => {
+    it('returns zero', () => {
+      expect(add()).toBe(0);
+    });
+  });
 
-	context('with only one number', () => {
-		it('returns the same number', () => {
-			expect(add(1)).toBe(1);
-		});
-	});
+  context('with only one number', () => {
+    it('returns the same number', () => {
+      expect(add(1)).toBe(1);
+    });
+  });
 
 });
 ```
@@ -75,26 +73,26 @@ describe('add', () => {
 
 ```javascript
 module.exports = {
-	testEnvironment: 'jsdom',
-	setupFilesAfterEnv: [
-		'@testing-library/jest-dom/extend-expect',
-	],
-	transform: {
-		'^.+\\.(t|j)sx?$': ['@swc/jest', {
-			jsc: {
-				parser: {
-					syntax: 'typescript',
-					jsx: true,
-					decorators: true,
-				},
-				transform: {
-					react: {
-						runtime: 'automatic',
-					},
-				},
-			},
-		}],
-	},
+ testEnvironment: 'jsdom',
+ setupFilesAfterEnv: [
+  '@testing-library/jest-dom/extend-expect',
+ ],
+ transform: {
+  '^.+\\.(t|j)sx?$': ['@swc/jest', {
+   jsc: {
+    parser: {
+     syntax: 'typescript',
+     jsx: true,
+     decorators: true,
+    },
+    transform: {
+     react: {
+      runtime: 'automatic',
+     },
+    },
+   },
+  }],
+ },
 };
 ```
 
