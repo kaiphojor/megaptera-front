@@ -6,8 +6,8 @@
 
 ## 목차
 
-1. [Express](week/4/express.md)
-2. [Fetch API & CORS](week/4/fetch-api-cors.md)
-3. [React의 Hook](week/4/hook.md)
-4. [useRef & Custom Hook](week/4/useref-custom-hook.md)
-5. [usehooks-ts](week/4/usehooks-ts.md)
+1. [Express](/week/4/express.md)
+2. [Fetch API & CORS](/week/4/fetch-api-cors.md)
+3. [React의 Hook](/week/4/hook.md)
+4. [useRef & Custom Hook](/week/4/useref-custom-hook.md)
+5. [usehooks-ts](/week/4/usehooks-ts.md)
