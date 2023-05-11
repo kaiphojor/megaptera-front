@@ -6,7 +6,7 @@
 
 ## 목차
 
-1. [TDD](week/5/tdd.md)
-2. [React Testing Library](week/5/react-testing-library.md)
-3. [MSW](week/5/msw.md)
-4. [Playwright](week/5/playwright.md)
+1. [TDD](/week/5/tdd.md)
+2. [React Testing Library](/week/5/react-testing-library.md)
+3. [MSW](/week/5/msw.md)
+4. [Playwright](/week/5/playwright.md)
