@@ -30,3 +30,6 @@
   * [React Testing Library](week/5/react-testing-library.md)
   * [MSW](week/5/msw.md)
   * [Playwright](week/5/playwright.md)
+* [week 6 - External Store](week/6/README.md)
+  * [External Store](week/6/external-store.md)
+  * [TSyringe](week/6/t-syringe.md)
