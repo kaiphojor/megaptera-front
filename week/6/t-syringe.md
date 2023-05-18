@@ -12,8 +12,6 @@ TSyringe(ts와 관련있다는 것을 보여주기 위해 노림 ). props drilli
 
 tsyringe도 내부적으로는 context를 사용한다.
 
-IOC container DI conteainre 해서 container라 한다 .
-
 ## Dependency Injection
 
 의존성 주입은 클래스간의 의존관계를 느슨하게 결합하는 디자인 패턴
@@ -45,6 +43,8 @@ IOC container DI conteainre 해서 container라 한다 .
 의존성 주입을 관리하고, 의존성을 필요로 하는 클래스에 의존성을 주입하는 역할
 
 의존성을 자동으로 생성하거나, 외부에서 주입받은 의존성을 관리하고, 필요한 곳에 주입
+
+IOC 컨테이너 라고도 한다
 
 ## reflect-metadata
 
