@@ -33,3 +33,8 @@
 * [week 6 - External Store](week/6/README.md)
   * [External Store](week/6/external-store.md)
   * [TSyringe](week/6/t-syringe.md)
+* [week 7 - React Router](week/7/README.md)
+  * [Routing](week/7/routing.md)
+  * [Routes](week/7/routes.md)
+  * [Router](week/7/router.md)
+  * [Navigation](week/7/navigation.md)
