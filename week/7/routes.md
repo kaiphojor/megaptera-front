@@ -18,6 +18,8 @@ router를 뜻으로 정리해보면 주어진 input에 따라 정해둔 경로�
 
 ## React Router
 
+[React Router](https://reactrouter.com/en/main)
+
 client side routing을 해주는 기능. server로 추가적인 요청 없이 URL/UI를 업데이트 할 수 있다.
 
 ### Browser Router
@@ -31,6 +33,8 @@ browser의 내장 history stack과 clean URLs를 이용해서 브라우저 주�
 [Route](https://reactrouter.com/en/main/route/route)
 
 URL 세그먼트와 컴포넌트, 데이터 로딩 및 데이터 변형을 연결. route nesting(경로 중첩)을 통해 복잡한 레이아웃, 데이터 의존성을 간단, 선언적으로 만든다.
+
+> 주소 - 컴포넌트 쌍의 매핑. 주소에 대응하는 컴포넌트를 렌더링
 
 ### Memory Router
 
