@@ -38,3 +38,5 @@
   * [Routes](week/7/routes.md)
   * [Router](week/7/router.md)
   * [Navigation](week/7/navigation.md)
+* [week 8 - CSS in JS](week/8/README.md)
+  * [Design System](week/8/design-system.md)

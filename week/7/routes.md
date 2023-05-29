@@ -22,6 +22,10 @@ router를 뜻으로 정리해보면 주어진 input에 따라 정해둔 경로�
 
 client side routing을 해주는 기능. server로 추가적인 요청 없이 URL/UI를 업데이트 할 수 있다.
 
+```bash
+npm i react-router-dom
+```
+
 ### Browser Router
 
 [BrowserRouter](https://reactrouter.com/en/main/router-components/browser-router)
