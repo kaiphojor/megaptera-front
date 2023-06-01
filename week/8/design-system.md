@@ -4,6 +4,8 @@
 
 API 같기도 하고, 코딩스타일 비슷해보이기도 한다.
 
+특정한 범위(회사) 웹페이지에서 어떤 크기의 창/기기에도 시각적인 일관성 제공 , 중복 제거, 대규모 디자인 관리를 위한 표준 집합
+
 ## 반응형 웹 디자인(Responsive web design)
 
 [Design System - Laura Kalbag](https://24ways.org/2012/design-systems/)

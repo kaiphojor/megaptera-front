@@ -6,7 +6,9 @@
 
 ## 목차
 
-1. [Design System](/week/7/design-system.md)
-2. [Routes](/week/7/routes.md)
-3. [Router](/week/7/router.md)
-4. [Navigation](/week/7/navigation.md)
+1. [Design System](/week/8/design-system.md)
+2. [Style Basics](/week/8/style-basics.md)
+3. [CSS in JS](/week/8/css-in-js.md)
+4. [styled-components](/week/8/styled-components.md)
+5. [props와 attrs](/week/8/props-attributes.md)
+6. [Global Style & Theme](/week/8/global-style-theme.md)

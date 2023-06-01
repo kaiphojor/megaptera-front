@@ -40,3 +40,8 @@
   * [Navigation](week/7/navigation.md)
 * [week 8 - CSS in JS](week/8/README.md)
   * [Design System](week/8/design-system.md)
+  * [Style Basics](week/8/style-basics.md)
+  * [CSS in JS](week/8/css-in-js.md)
+  * [styled-components](week/8/styled-components.md)
+  * [props와 attrs](week/8/props-attributes.md)
+  * [Global Style & Theme](week/8/global-style-theme.md)
