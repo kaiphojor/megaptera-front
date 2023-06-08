@@ -66,9 +66,22 @@ UX reference
 
 실제 적용시에는 Theme과 Component를 활용할 수 있다.
 
+## Gallery
+
+회사별 디자인 시스템들을 보여준다.
+
+* [Design Systems Gallery](https://designsystemsrepo.com/design-systems/)
+* [Design Systems](https://www.designsystems.com/open-design-systems/)
+
 ## Atomic Design
 
 Design System을 만들기 위한 방법론. component 분리 부분에서 이미 언급이 되었었다.
 
 * [Atomic Design 소개 글](https://bradfrost.com/blog/post/atomic-web-design/)
 * [Atomic Design 전자책](https://atomicdesign.bradfrost.com/)
+
+## 반응형 디자인
+
+[Responsive Design](https://developer.mozilla.org/ko/docs/Learn/CSS/CSS_layout/Responsive_Design)
+
+다양한 화면 너비/해상도 등에 맞게 웹 페이지가 레이아웃과 모양을 유동적으로 변경할 수 있는 디자인 방식 - [by Ethan Marcotte](https://alistapart.com/article/responsive-web-design/)
